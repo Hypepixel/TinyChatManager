@@ -7,23 +7,9 @@ description: A bloat-free chat management and formatting plugin
 permissions:
       tinychatmanager.*:
         description: Wildcard permission
-        default: false
+        default: op
         children:
-          tinychatmanager.use: true
           tinychatmanager.admin: true
-          tinychatmanager.commands.reload: true
-          tinychatmanager.commands.debug: true
-          tinychatmanager.commands.set: true
-          tinychatmanager.commands.user: true
-          tinychatmanager.commands.user.update: true
-          tinychatmanager.commands.user.info: true
-          tinychatmanager.commands.user.setgroup: true
-          tinychatmanager.commands.user.setsubgroup: true
-          tinychatmanager.commands.database: true
-          tinychatmanager.commands.database.migrate: true
-      tinychatmanager.use:
-         description: Permission to use help commands.
-         default: true
       tinychatmanager.admin:
         description: Permission for all administrative actions.
         default: op
@@ -39,6 +25,10 @@ permissions:
           tinychatmanager.commands.user.setsubgroup: true
           tinychatmanager.commands.database: true
           tinychatmanager.commands.database.migrate: true
+          tinychatmanager.color.*: true
+      tinychatmanager.use:
+         description: Permission to use help commands.
+         default: true
       tinychatmanager.commands.reload:
         description: Permission to reload configs and saved files.
         default: false
@@ -68,6 +58,74 @@ permissions:
         default: false
       tinychatmanager.commands.user.database.migrate:
         description: Permission to migrate the database.
+        default: false
+      tinychatmanager.color.*:
+        description: Permission to use all colors.
+        default: true;
+        children:
+          tinychatmanager.color.white: true
+          tinychatmanager.color.black: true
+          tinychatmanager.color.lightgray: true
+          tinychatmanager.color.gray: true
+          tinychatmanager.color.blue: true
+          tinychatmanager.color.green: true
+          tinychatmanager.color.cyan: true
+          tinychatmanager.color.darkred: true
+          tinychatmanager.color.purple: true
+          tinychatmanager.color.gold: true
+          tinychatmanager.color.lightblue: true
+          tinychatmanager.color.lime: true
+          tinychatmanager.color.aqua: true
+          tinychatmanager.color.red: true
+          tinychatmanager.color.magenta: true
+          tinychatmanager.color.yellow: true
+      tinychatmanager.color.white:
+        description: Permission to use white.
+        default: false
+      tinychatmanager.color.black:
+        description: Permission to use black.
+        default: false
+      tinychatmanager.color.lightgray:
+        description: Permission to use lightgray.
+        default: false
+      tinychatmanager.color.gray:
+        description: Permission gray.
+        default: false
+      tinychatmanager.color.blue:
+        description: Permission to use blue.
+        default: false
+      tinychatmanager.color.green:
+        description: Permission to use green.
+        default: false
+      tinychatmanager.color.cyan:
+        description: Permission to use cyan.
+        default: false
+      tinychatmanager.color.darkred:
+        description: Permission to use darkred.
+        default: false
+      tinychatmanager.color.purple:
+        description: Permission to use purple.
+        default: false
+      tinychatmanager.color.gold:
+        description: Permission to use gold.
+        default: false
+      tinychatmanager.color.lightblue:
+        description: Permission to use lightblue.
+        default: false
+      tinychatmanager.color.lime:
+        description: Permission to use lime.
+        default: false
+      tinychatmanager.color.aqua:
+        description: Permission to use aqua.
+        default: false
+      tinychatmanager.color.red:
+        description: Permission to use red.
+        default: false
+      tinychatmanager.color.magenta:
+        description: Permission to use magenta.
+        default: false
+      tinychatmanager.color.yellow:
+        description: Permission to use yellow.
         default: false
 commands:
    tinychatmanager:
