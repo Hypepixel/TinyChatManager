@@ -155,7 +155,7 @@ public class Messages
 
     public static String getPrefix()
     {
-        return "§7[§5TinyChatManager§7] ";
+        return "§7[§bTinyChatManager§7] ";
     }
 
     private static String translate(final String text)
