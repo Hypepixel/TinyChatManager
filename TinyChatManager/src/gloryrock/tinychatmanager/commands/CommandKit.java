@@ -69,8 +69,6 @@ public class CommandKit implements Listener, CommandExecutor
                     aSender.sendMessage(
                         "§7/§6TinyChatManager database migrate §f| §7save groups and users to database (will override database!)");
                     aSender.sendMessage(" ");
-                    aSender.sendMessage("§7------------------------------------------------");
-                    aSender.sendMessage(" ");
                     return true;
                 }
             }
@@ -163,9 +161,9 @@ public class CommandKit implements Listener, CommandExecutor
                                 : "-";
                             if (target2.getChatFormatting() != null)
                                 colorCode += target2.getChatFormatting().getCode();
+                            
                             aSender.sendMessage("§6Chatcolor§f: §7" + colorCode.replace("§", "&"));
                             aSender.sendMessage(" ");
-                            aSender.sendMessage("§7-----------------------------------------------");
                             return true;
                         }
                         if (someArguments[2].equalsIgnoreCase(CustomCommand.USER_SETGROUP.toString()))
@@ -207,7 +205,6 @@ public class CommandKit implements Listener, CommandExecutor
                     aSender.sendMessage("§7/§6TinyChatManager user <Player> setgroup <Group> §f| §7" + CustomCommand.USER_SETGROUP.getDescription());
                     aSender.sendMessage("§7/§6TinyChatManager user <Player> setsubgroup <Subgroup> §f| §7" + CustomCommand.USER_SETSUBGROUP.getDescription());
                     aSender.sendMessage(" ");
-                    aSender.sendMessage("§7----------------------------------------------------");
                     return false;
                 }
                 aSender.sendMessage(Messages.getMessage(Message.PLAYER_NOT_FOUND));
@@ -253,10 +250,9 @@ public class CommandKit implements Listener, CommandExecutor
             aSender.sendMessage("§7/§6TinyChatManager database §7" + CustomCommand.DATABASE.getDescription());
         
         aSender.sendMessage(" ");
-        aSender.sendMessage("§7------------------------------------------------");
-        aSender.sendMessage(" ");
         aSender.sendMessage("§7Version: " + TinyChatManager.getInstance().getPlugin().getDescription().getVersion());
         aSender.sendMessage("§7TinyChatManager by §b§lGloryrock");
+        aSender.sendMessage(" ");
         return false;
     }
 }
