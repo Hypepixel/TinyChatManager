@@ -65,8 +65,8 @@ public class Messages
         final String path = "plugins/TinyChatManager";
         if (Messages.language == null || !Messages.languages.contains(Messages.language))
         {
-            Messages.language = "en_EN";
-            config.getFileData().set("config.lang", (Object) "en_EN");
+            Messages.language = "en_US";
+            config.getFileData().set("config.lang", (Object) "en_US");
             config.save();
         }
         final File file = new File(path, Messages.language + ".yml");
@@ -165,6 +165,6 @@ public class Messages
 
     static
     {
-        Messages.languages = Arrays.asList("en_EN", "de_DE", "it_IT");
+        Messages.languages = Arrays.asList("en_US", "nl_NL");
     }
 }
