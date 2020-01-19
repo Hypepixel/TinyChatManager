@@ -1,0 +1,42 @@
+groups:
+  Owner:
+    prefix: '&4Owner &7| &4'
+    suffix: '&f:'
+    chat-color: '&7'
+  Admin:
+    prefix: '&4Admin &7| &4'
+    suffix: '&f:'
+    chat-color: '&7'
+  Developer:
+    prefix: '&3Dev &7| &4'
+    suffix: '&f:'
+    chat-color: '&7'
+  Moderator:
+    prefix: '&c&lMod &7| &c'
+    suffix: '&f:'
+    chat-color: '&7'
+  Supporter:
+    prefix: '&9Sup &7| &9'
+    suffix: '&f:'
+    chat-color: '&7'
+  Builder:
+    prefix: '&aBuilder &7| &a'
+    suffix: '&f:'
+    chat-color: '&7'
+    join-msg: '&8» &aMaster Builder %player% &7joined the game'
+    quit-msg: '&8« %player% &7left the game'
+  Vip:
+    prefix: '&eVIP &7| &e'
+    suffix: '&f:'
+    chat-formatting: '%rainbow%'
+    chat-color: '&7'
+  Premium:
+    prefix: '&6Premium &7| &6'
+    suffix: '&f:'
+    chat-color: '&7'
+  default:
+    prefix: '&7'
+    suffix: '&f:'
+    chat-color: '&7'
+    join-msg: '&8» %player% &7joined the game'
+    quit-msg: '&8« %player% &7left the game'

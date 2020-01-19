@@ -1,0 +1,44 @@
+info:
+  noperms: '&cYou do not have permission to use that command.'
+  playerNotFound: '&cPlayer was not found!'
+  groupNotFound: '&cGroup was not found!'
+  groupExists: '&cThis group already exists!'
+  groupCreated: '&aGroup has been created!'
+  success: '&aSuccess!'
+  reloadComplete: '&aPlugin has been reloaded!'
+  playerOnly: '&cYou can''t use this from console!'
+  enabled: '&aenabled'
+  disabled: '&cdisabled'
+chat:
+  header:
+  - '&6&lTinyChatManager'
+  - '%question%'
+  - '&7&oPlease type in your answer, or type "%quit%"'
+  - '&7--------------------------------------------------------------'
+  prefix: '&6What should be the prefix?%newline%&6Current: &7"%prefix%"'
+  suffix: '&6What should be the suffix?%newline%&6Current: &7"%suffix%"'
+  group: '&6What should be the name of the new group?'
+  wrongEntry: '&cWrong entry!%newline%&7%allowed_inputs%'
+colors:
+  black: Black
+  blue: Blue
+  green: Green
+  cyan: Cyan
+  darkred: Dark Red
+  purple: Purple
+  gold: Gold
+  lightgray: Light Gray
+  gray: Gray
+  lightblue: Light Blue
+  lime: Lime/Green
+  aqua: Aqua
+  red: Red
+  magenta: Magenta
+  yellow: Yellow
+  white: White
+  formattings:
+    bold: Bold
+    italic: Italic
+    strikethrough: Strikethrough
+    underline: Underline
+    rainbow: Rainbow

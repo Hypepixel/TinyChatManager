@@ -1,0 +1,44 @@
+info:
+  noperms: '&cU hebt geen toestemming om die opdracht te gebruiken.'
+  playerNotFound: '&cSpeler kon niet gevonden worden!'
+  groupNotFound: '&cGroep kon niet gevonden worden!'
+  groupExists: '&cDeze groep bestaat al!'
+  groupCreated: '&aGroep is toegevoegd!'
+  success: '&aSucces!'
+  reloadComplete: '&aPlugin is herladen!'
+  playerOnly: '&cU kan die opdracht niet via een console gebruiken!'
+  enabled: '&aaan'
+  disabled: '&cuit'
+chat:
+  header:
+  - '&6&lTinyChatManager'
+  - '%question%'
+  - '&7&oPlease type in your answer, or type "%quit%"'
+  - '&7--------------------------------------------------------------'
+  prefix: '&6What should be the prefix?%newline%&6Current: &7"%prefix%"'
+  suffix: '&6What should be the suffix?%newline%&6Current: &7"%suffix%"'
+  group: '&6What should be the name of the new group?'
+  wrongEntry: '&cWrong entry!%newline%&7%allowed_inputs%'
+colors:
+  black: Black
+  blue: Blue
+  green: Green
+  cyan: Cyan
+  darkred: Dark Red
+  purple: Purple
+  gold: Gold
+  lightgray: Light Gray
+  gray: Gray
+  lightblue: Light Blue
+  lime: Lime/Green
+  aqua: Aqua
+  red: Red
+  magenta: Magenta
+  yellow: Yellow
+  white: White
+  formattings:
+    bold: Bold
+    italic: Italic
+    strikethrough: Strikethrough
+    underline: Underline
+    rainbow: Rainbow

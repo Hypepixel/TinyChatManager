@@ -1,5 +1,103 @@
 name: TinyChatManager
 main: gloryrock.tinychatmanager.TinyChatManager
-version: 1.0
+version: 1.0.0
 api-version: 1.15
+author: Gloryrock
+description: A bloat-free chat management and formatting plugin
+permissions:
+      tinychatmanager.*:
+        description: Wildcard permission
+        default: false
+        children:
+          tinychatmanager.use: true
+          tinychatmanager.admin: true
+          tinychatmanager.commands.reload: true
+          tinychatmanager.commands.debug: true
+          tinychatmanager.commands.set: true
+          tinychatmanager.commands.user: true
+          tinychatmanager.commands.user.update: true
+          tinychatmanager.commands.user.info: true
+          tinychatmanager.commands.user.setgroup: true
+          tinychatmanager.commands.user.setsubgroup: true
+          tinychatmanager.commands.database: true
+          tinychatmanager.commands.database.migrate: true
+      tinychatmanager.use:
+         description: Permission to use help commands.
+         default: true
+      tinychatmanager.admin:
+        description: Permission for all administrative actions.
+        default: op
+        children:
+          tinychatmanager.use: true
+          tinychatmanager.commands.reload: true
+          tinychatmanager.commands.debug: true
+          tinychatmanager.commands.set: true
+          tinychatmanager.commands.user: true
+          tinychatmanager.commands.user.update: true
+          tinychatmanager.commands.user.info: true
+          tinychatmanager.commands.user.setgroup: true
+          tinychatmanager.commands.user.setsubgroup: true
+          tinychatmanager.commands.database: true
+          tinychatmanager.commands.database.migrate: true
+      tinychatmanager.commands.reload:
+        description: Permission to reload configs and saved files.
+        default: false
+      tinychatmanager.commands.debug:
+        description: Permission to display debug information.
+        default: false
+      tinychatmanager.commands.set:
+        description: Permission to set user specific prefixes, suffixes and colors.
+        default: false
+      tinychatmanager.commands.user:
+        description: Permission to modify user configs.
+        default: false
+      tinychatmanager.commands.user.update:
+        description: Permission to update user configs.
+        default: false
+      tinychatmanager.commands.user.info:
+        description: Permission to display user information.
+        default: false
+      tinychatmanager.commands.user.setgroup:
+        description: Permission to modify a user's group.
+        default: false
+      tinychatmanager.commands.user.setsubgroup:
+        description: Permission to modify a user's subgroup.
+        default: false
+      tinychatmanager.commands.user.database:
+        description: Permission to modify the database.
+        default: false
+      tinychatmanager.commands.user.database.migrate:
+        description: Permission to migrate the database.
+        default: false
 commands:
+   tinychatmanager:
+      description: Display information about tinychatmanager commands.
+      aliases: tcm
+      permission: tinychatmanager.use
+      permission-message: You do not have permission to use this command.
+      usage: /tinychatmanager
+   reload:
+      description: Reload configs.
+      permission: tinychatmanager.commands.reload
+      permission-message: You do not have permission to use this command.
+      usage: /tinychatmanager reload
+   debug:
+      description: Debug configs.
+      permission: tinychatmanager.commands.debug
+      permission-message: You do not have permission to use this command.
+      usage: /tinychatmanager debug
+   set:
+      description: Set user specific prefixes, suffixes and colors.
+      permission: tinychatmanager.commands.set
+      permission-message: You do not have permission to use this command.
+      usage: /tinychatmanager set
+   user:
+      description: Display information about user commands.
+      permission: tinychatmanager.commands.user
+      permission-message: You do not have permission to use this command.
+      usage: /tinychatmanager user <Player>
+   database:
+      description: Display information about database commands.
+      permission: tinychatmanager.commands.database
+      permission-message: You do not have permission to use this command.
+      usage: /tinychatmanager database

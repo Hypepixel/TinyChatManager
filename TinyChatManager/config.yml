@@ -1,0 +1,39 @@
+config:
+  enabled: true
+  version: 1.0.0
+  lang: en_US
+  sql:
+    enabled: false
+    host: localhost
+    port: 3306
+    database: TinyChatManager
+    username: username
+    password: password
+    table-prefix: tcm
+  user:
+  subgroups:
+    enabled: true
+  chat:
+    duplicate-white-spaces: false
+    color:
+      rainbow:
+        colors:
+        - YELLOW
+        - BLUE
+        - LIGHT_PURPLE
+        - RED
+        - DARK_AQUA
+        - GOLD
+        - GREEN
+        - DARK_PURPLE
+  join-quit-messsages:
+    enabled: true
+    hide-messages: false
+    sound:
+      receiver: all
+      join:
+        enabled: true
+        sound: BLOCK_BEEHIVE_ENTER; 20; 1
+      quit:
+        enabled: true
+        sound: BLOCK_BEEHIVE_EXIT; 18; 1

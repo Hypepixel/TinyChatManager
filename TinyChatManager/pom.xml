@@ -2,11 +2,11 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>gloryrock.tinychatmanager</groupId>
    <artifactId>tinychatmanager</artifactId>
-   <version>1.0.0-SNAPSHOT</version>
+   <version>1.0.0</version>
    <packaging>jar</packaging>
    <name>TinyChatManager</name>
    <url>https://github.com/Gloryrock/TinyChatManager</url>
-   <description>A bloat-free chat manager plugin.</description>
+   <description>A bloat-free chat management and formatting plugin.</description>
    <properties>
        <buildNo></buildNo>
    </properties>
@@ -36,16 +36,25 @@
    </build>
    <dependencies>
        <dependency>
-           <groupId>org.bukkit</groupId>
-           <artifactId>bukkit</artifactId>
+           <groupId>org.spigotmc</groupId>
+           <artifactId>spigot-api</artifactId>
            <version>1.15.1-R0.1-SNAPSHOT</version>
            <scope>provided</scope>
+       </dependency>
+       <dependency>
+           <groupId>com.google.code.findbugs</groupId>
+           <artifactId>jsr305</artifactId>
+           <version>3.0.2</version>
        </dependency>
    </dependencies>
    <repositories>
        <repository>
            <id>spigot-repo</id>
            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+       </repository>
+       <repository>
+           <id>javax-annotation-repo</id>
+           <url>https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305</url>
        </repository>
    </repositories>
 </project>
