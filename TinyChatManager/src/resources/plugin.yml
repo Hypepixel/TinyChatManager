@@ -61,7 +61,7 @@ permissions:
         default: false
       tinychatmanager.color.*:
         description: Permission to use all colors.
-        default: true;
+        default: true
         children:
           tinychatmanager.color.white: true
           tinychatmanager.color.black: true
