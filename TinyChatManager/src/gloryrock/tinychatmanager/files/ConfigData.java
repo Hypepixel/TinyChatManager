@@ -31,9 +31,9 @@ public class ConfigData
             this.fileData.options().copyDefaults(true);
             this.fileData.save(this.file);
         }
-        catch (IOException e)
+        catch (IOException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
         this.load();
     }
