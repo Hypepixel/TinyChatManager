@@ -5,7 +5,7 @@ public enum CustomPermission
     ROOT("tinychatmanager.*"),
     ADMIN("tinychatmanager.admin"),
     COLOR("tinychatmanager.color"),
-    COLOR_ALL("tinychatmanager.color.all"),
+    COLOR_ALL("tinychatmanager.color.*"),
     GROUP("tinychatmanager.group"),
     SUBGROUP("tinychatmanager.subgroup");
 
