@@ -34,4 +34,16 @@
            <url>https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305</url>
        </repository>
    </repositories>
+   <build>
+	   <resources>
+	       <resource>
+	           <directory>${basedir}/src/resources</directory>
+	           <filtering>true</filtering>
+	           <includes>
+	               <include>*</include>
+	           </includes>
+	       </resource>
+	   </resources>
+	   <sourceDirectory>src/</sourceDirectory>
+   </build>
 </project>
