@@ -30,8 +30,7 @@ public class Subgroup extends EasyGroup
         {
             try
             {
-                final ResultSet result = db
-                    .getValue("SELECT `prefix`, `suffix` FROM `%p%subgroups` WHERE `group` = '" + name + "'");
+                final ResultSet result = db.getValue("SELECT `prefix`, `suffix` FROM `%p%subgroups` WHERE `group` = '" + name + "'");
                 while (result.next())
                 {
                     this.prefix = result.getString("prefix");

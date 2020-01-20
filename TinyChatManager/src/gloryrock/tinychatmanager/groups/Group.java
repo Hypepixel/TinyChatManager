@@ -41,8 +41,7 @@ public class Group extends EasyGroup
         {
             try
             {
-                final String sql = "SELECT `prefix`,`suffix`,`chat_color`,`chat_formatting`,`join_msg`,`quit_msg` FROM `%p%groups` WHERE `group` = '"
-                    + name + "'";
+                final String sql = "SELECT `prefix`,`suffix`,`chat_color`,`chat_formatting`,`join_msg`,`quit_msg` FROM `%p%groups` WHERE `group` = '" + name + "'";
                 final ResultSet result = db.getValue(sql);
                 while (result.next())
                 {
@@ -64,14 +63,12 @@ public class Group extends EasyGroup
             final FileConfiguration data = this.getGroupsData().getFileData();
             if (data.getString(this.getFilePath() + "chatcolor") != null)
             {
-                this.getGroupsData().set(this.getFilePath() + "chat-color",
-                    data.getString(this.getFilePath() + "chatcolor"));
+                this.getGroupsData().set(this.getFilePath() + "chat-color", data.getString(this.getFilePath() + "chatcolor"));
                 this.getGroupsData().set(this.getFilePath() + "chatcolor", null);
             }
             if (data.getString(this.getFilePath() + "chatformatting") != null)
             {
-                this.getGroupsData().set(this.getFilePath() + "chat-formatting",
-                    data.getString(this.getFilePath() + "chatformatting"));
+                this.getGroupsData().set(this.getFilePath() + "chat-formatting", data.getString(this.getFilePath() + "chatformatting"));
                 this.getGroupsData().set(this.getFilePath() + "chatformatting", null);
             }
             this.rawPrefix = data.getString(this.getFilePath() + "prefix");
@@ -129,10 +126,8 @@ public class Group extends EasyGroup
         if (this.getGroupColor() == null)
             this.groupColor = ChatColor.DARK_PURPLE;
 
-        this.joinMessage = ((joinMsg == null) ? this.translate(GroupHandler.getGroup("default").getJoinMessage())
-            : this.translate(joinMsg));
-        this.quitMessage = ((quitMsg == null) ? this.translate(GroupHandler.getGroup("default").getQuitMessage())
-            : this.translate(quitMsg));
+        this.joinMessage = ((joinMsg == null) ? this.translate(GroupHandler.getGroup("default").getJoinMessage()) : this.translate(joinMsg));
+        this.quitMessage = ((quitMsg == null) ? this.translate(GroupHandler.getGroup("default").getQuitMessage()) : this.translate(quitMsg));
     }
 
     public String getJoinMessage()

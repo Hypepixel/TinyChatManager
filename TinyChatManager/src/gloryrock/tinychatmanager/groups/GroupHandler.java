@@ -48,8 +48,7 @@ public class GroupHandler
             {
                 getGroupsData().set("groups.default.quit-msg", "&8« %ep_user_prefix% %player% &8left the game");
             }
-            final Set<String> groupsList = (Set<String>) getGroupsData().getFileData().getConfigurationSection("groups")
-                .getKeys(false);
+            final Set<String> groupsList = (Set<String>) getGroupsData().getFileData().getConfigurationSection("groups").getKeys(false);
             for (final String g : groupsList)
             {
                 if (g.equals("default"))
@@ -71,8 +70,7 @@ public class GroupHandler
             }
             if (FileManager.getConfig().getFileData().getBoolean(ConfigData.Values.USE_SUBGROUPS.toString()))
             {
-                final ConfigurationSection configurationSection = getGroupsData().getFileData()
-                    .getConfigurationSection("subgroups");
+                final ConfigurationSection configurationSection = getGroupsData().getFileData().getConfigurationSection("subgroups");
                 if (configurationSection != null)
                 {
                     final Set<String> subgroupsList = (Set<String>) configurationSection.getKeys(false);

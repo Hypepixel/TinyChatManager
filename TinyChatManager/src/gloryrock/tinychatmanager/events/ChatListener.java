@@ -38,8 +38,7 @@ public class ChatListener implements Listener
                     chatColor += user.getChatFormatting().getCode();
             }
         }
-        else if (user.getGroup().getChatFormatting() != null
-            && user.getGroup().getChatFormatting().equals(ChatFormatting.RAINBOW))
+        else if (user.getGroup().getChatFormatting() != null && user.getGroup().getChatFormatting().equals(ChatFormatting.RAINBOW))
         {
             msg = RainbowEffect.addRainbowEffect(msg);
         }

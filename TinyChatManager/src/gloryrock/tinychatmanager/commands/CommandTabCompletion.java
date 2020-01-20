@@ -16,8 +16,7 @@ import org.bukkit.command.TabCompleter;
 
 public class CommandTabCompletion implements TabCompleter
 {
-    public List<String> onTabComplete(final CommandSender aSender, final Command aCommand, final String aLabel,
-        final String[] someArguments)
+    public List<String> onTabComplete(final CommandSender aSender, final Command aCommand, final String aLabel, final String[] someArguments)
     {
         if (aCommand.getName().equalsIgnoreCase(CustomCommand.ROOT.toString()))
         {

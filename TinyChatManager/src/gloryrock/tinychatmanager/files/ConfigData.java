@@ -70,47 +70,46 @@ public class ConfigData
 
         if (this.get(Values.LANG) == null)
             this.set(Values.LANG, "en_US");
-        
+
         if (this.get(Values.USE_SQL) == null || !(this.get(Values.USE_SQL) instanceof Boolean))
             this.set(Values.USE_SQL, false);
-        
+
         if (this.get(Values.SQL_HOST) == null)
             this.set(Values.SQL_HOST, "localhost");
-        
+
         if (this.get(Values.SQL_PORT) == null)
             this.set(Values.SQL_PORT, "3306");
-        
+
         if (this.get(Values.SQL_DATABASE) == null)
             this.set(Values.SQL_DATABASE, "TinyChatManager");
-        
+
         if (this.get(Values.SQL_USERNAME) == null)
             this.set(Values.SQL_USERNAME, "username");
-        
+
         if (this.get(Values.SQL_PASSWORD) == null)
             this.set(Values.SQL_PASSWORD, "password");
-        
+
         if (this.get(Values.SQL_TABLE_PREFIX) == null)
             this.set(Values.SQL_TABLE_PREFIX, "tcm");
-        
+
         if (this.get(Values.USE_SUBGROUPS) == null || !(this.get(Values.USE_SUBGROUPS) instanceof Boolean))
             this.set(Values.USE_SUBGROUPS, true);
-        
+
         if (this.get(Values.DUPLICATE_WHITE_SPACES) == null || !(this.get(Values.DUPLICATE_WHITE_SPACES) instanceof Boolean))
             this.set(Values.DUPLICATE_WHITE_SPACES, false);
 
         if (this.get(Values.COLOR_RAINBOW_COLORS) == null)
-            this.set(Values.COLOR_RAINBOW_COLORS,
-                Arrays.asList("YELLOW", "BLUE", "LIGHT_PURPLE", "RED", "DARK_AQUA", "GOLD", "GREEN", "DARK_PURPLE"));
+            this.set(Values.COLOR_RAINBOW_COLORS, Arrays.asList("YELLOW", "BLUE", "LIGHT_PURPLE", "RED", "DARK_AQUA", "GOLD", "GREEN", "DARK_PURPLE"));
 
         if (this.get(Values.USE_JOIN_QUIT) == null || !(this.get(Values.USE_JOIN_QUIT) instanceof Boolean))
             this.set(Values.USE_JOIN_QUIT, true);
 
         if (this.get(Values.HIDE_JOIN_QUIT) == null || !(this.get(Values.HIDE_JOIN_QUIT) instanceof Boolean))
             this.set(Values.HIDE_JOIN_QUIT, false);
-        
+
         if (this.get(Values.JOIN_QUIT_SOUND_RECEIVER) == null || (!this.get(Values.JOIN_QUIT_SOUND_RECEIVER).equals("all") && !this.get(Values.JOIN_QUIT_SOUND_RECEIVER).equals("player")))
             this.set(Values.JOIN_QUIT_SOUND_RECEIVER, "all");
-        
+
         if (this.get(Values.USE_JOIN_SOUND) == null || !(this.get(Values.USE_JOIN_SOUND) instanceof Boolean))
             this.set(Values.USE_JOIN_SOUND, true);
 

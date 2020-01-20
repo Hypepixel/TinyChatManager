@@ -88,8 +88,7 @@ public class User
         final Database db = TinyChatManager.getInstance().getDatabase();
         if (db != null)
         {
-            final String stmt = "SELECT `group`,`force_group`,`subgroup`,`chat_color`,`chat_formatting` FROM `"
-                + db.getTablePrefix() + "users` WHERE `uuid` = '" + this.PLAYER.getUniqueId().toString() + "'";
+            final String stmt = "SELECT `group`,`force_group`,`subgroup`,`chat_color`,`chat_formatting` FROM `" + db.getTablePrefix() + "users` WHERE `uuid` = '" + this.PLAYER.getUniqueId().toString() + "'";
             try
             {
                 final ResultSet result = db.getValue(stmt);
@@ -130,8 +129,7 @@ public class User
         {
             this.group = this.getGroupPerPerms();
         }
-        else if ((GroupHandler.isGroup(groupName) && this.PLAYER.hasPermission(CustomPermission.GROUP.toString() + "." + groupName))
-            || forceGroup || groupName.equals("default"))
+        else if ((GroupHandler.isGroup(groupName) && this.PLAYER.hasPermission(CustomPermission.GROUP.toString() + "." + groupName)) || forceGroup || groupName.equals("default"))
         {
             this.group = GroupHandler.getGroup(groupName);
         }
@@ -140,11 +138,9 @@ public class User
             this.group = this.getGroupPerPerms();
             this.saveData("group", null);
         }
-        if (FileManager.getConfig().getFileData().getBoolean(ConfigData.Values.USE_SUBGROUPS.toString())
-            && subgroupName != null)
+        if (FileManager.getConfig().getFileData().getBoolean(ConfigData.Values.USE_SUBGROUPS.toString()) && subgroupName != null)
         {
-            if (GroupHandler.isSubgroup(subgroupName)
-                && this.PLAYER.hasPermission(CustomPermission.SUBGROUP.toString() + "." + subgroupName))
+            if (GroupHandler.isSubgroup(subgroupName) && this.PLAYER.hasPermission(CustomPermission.SUBGROUP.toString() + "." + subgroupName))
             {
                 this.subgroup = GroupHandler.getSubgroup(subgroupName);
             }

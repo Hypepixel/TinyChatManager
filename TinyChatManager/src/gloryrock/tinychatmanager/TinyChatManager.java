@@ -62,8 +62,7 @@ public class TinyChatManager extends JavaPlugin
         this.registerEvents();
         if (!cfg.getFileData().getBoolean("config.enabled"))
         {
-            Bukkit.getServer().getConsoleSender()
-                .sendMessage(Messages.getPrefix() + "§cPlugin has been disabled! §7Please enable it in \"config.yml\"");
+            Bukkit.getServer().getConsoleSender().sendMessage(Messages.getPrefix() + "§cPlugin has been disabled! §7Please enable it in \"config.yml\"");
             Bukkit.getPluginManager().disablePlugin((Plugin) this);
         }
     }
@@ -100,23 +99,18 @@ public class TinyChatManager extends JavaPlugin
 
     private void update()
     {
-        Bukkit.getServer().getConsoleSender()
-            .sendMessage(Messages.getPrefix() + "§cYour configuration is not up to date!");
+        Bukkit.getServer().getConsoleSender().sendMessage(Messages.getPrefix() + "§cYour configuration is not up to date!");
         Bukkit.getServer().getConsoleSender().sendMessage(Messages.getPrefix() + "§cUpdating files...");
         final ConfigData config = FileManager.getConfig();
         final GroupsData groups = FileManager.getGroups();
         try
         {
-            final Set<String> oldGroups = (Set<String>) config.getFileData().getConfigurationSection("config.prefix")
-                .getKeys(false);
+            final Set<String> oldGroups = (Set<String>) config.getFileData().getConfigurationSection("config.prefix").getKeys(false);
             for (final String name : oldGroups)
             {
-                groups.getFileData().set("groups." + name + ".prefix",
-                    (Object) config.getFileData().getString("config.prefix." + name + ".prefix"));
-                groups.getFileData().set("groups." + name + ".suffix",
-                    (Object) config.getFileData().getString("config.prefix." + name + ".suffix"));
-                groups.getFileData().set("groups." + name + ".chat-color",
-                    (Object) config.getFileData().getString("config.prefix." + name + ".chatcolor"));
+                groups.getFileData().set("groups." + name + ".prefix", (Object) config.getFileData().getString("config.prefix." + name + ".prefix"));
+                groups.getFileData().set("groups." + name + ".suffix", (Object) config.getFileData().getString("config.prefix." + name + ".suffix"));
+                groups.getFileData().set("groups." + name + ".chat-color", (Object) config.getFileData().getString("config.prefix." + name + ".chatcolor"));
             }
             final File file = new File(this.getDataFolder(), "config.yml");
             file.renameTo(new File(this.getDataFolder(), "old-config.yml"));

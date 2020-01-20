@@ -36,7 +36,7 @@ permissions:
         description: Permission to display debug information.
         default: false
       tinychatmanager.commands.set:
-        description: Permission to set user specific prefixes, suffixes and colors.
+        description: Permission to set user specific prefixes, suffixes, groups and colors.
         default: false
       tinychatmanager.commands.user:
         description: Permission to modify user configs.

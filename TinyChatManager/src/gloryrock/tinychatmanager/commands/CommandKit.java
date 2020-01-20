@@ -24,8 +24,7 @@ import org.bukkit.event.Listener;
 
 public class CommandKit implements Listener, CommandExecutor
 {
-    public boolean onCommand(final CommandSender aSender, final Command aCommand, final String aLabel,
-        final String[] someArguments)
+    public boolean onCommand(final CommandSender aSender, final Command aCommand, final String aLabel, final String[] someArguments)
     {
         User user = null;
         if (aSender instanceof Player)
@@ -46,28 +45,22 @@ public class CommandKit implements Listener, CommandExecutor
             }
             else
             {
-                if (someArguments[0].equalsIgnoreCase(CustomCommand.DEBUG.toString())
-                    && aSender.hasPermission(CustomCommand.DEBUG.getPermission()))
+                if (someArguments[0].equalsIgnoreCase(CustomCommand.DEBUG.toString()) && aSender.hasPermission(CustomCommand.DEBUG.getPermission()))
                 {
                     aSender.sendMessage(" ");
                     aSender.sendMessage("§6§lTinyChatManager Debug");
-                    aSender.sendMessage(
-                        "Groups: " + GroupHandler.getGroups().size() + "/" + GroupHandler.getSubgroups().size());
+                    aSender.sendMessage("Groups: " + GroupHandler.getGroups().size() + "/" + GroupHandler.getSubgroups().size());
                     aSender.sendMessage("Users cached: " + User.getUsers().size());
                     aSender.sendMessage("Bukkit Version: " + Bukkit.getVersion());
                     aSender.sendMessage("Version Name: " + Bukkit.getBukkitVersion());
-                    aSender.sendMessage("active EventHandler: "
-                        + HandlerList.getRegisteredListeners(TinyChatManager.getInstance().getPlugin()).size());
+                    aSender.sendMessage("active EventHandler: " + HandlerList.getRegisteredListeners(TinyChatManager.getInstance().getPlugin()).size());
                     return true;
                 }
-                if (someArguments[0].equalsIgnoreCase(CustomCommand.DATABASE.toString())
-                    && TinyChatManager.getInstance().getDatabase() != null
-                    && aSender.hasPermission(CustomCommand.DATABASE.getPermission()))
+                if (someArguments[0].equalsIgnoreCase(CustomCommand.DATABASE.toString()) && TinyChatManager.getInstance().getDatabase() != null && aSender.hasPermission(CustomCommand.DATABASE.getPermission()))
                 {
                     aSender.sendMessage("§6§lTinyChatManager");
                     aSender.sendMessage(" ");
-                    aSender.sendMessage(
-                        "§7/§6TinyChatManager database migrate §f| §7save groups and users to database (will override database!)");
+                    aSender.sendMessage("§7/§6TinyChatManager database migrate §f| §7save groups and users to database (will override database!)");
                     aSender.sendMessage(" ");
                     return true;
                 }
@@ -105,8 +98,7 @@ public class CommandKit implements Listener, CommandExecutor
                 final File userFile = new File(FileManager.getPluginFolder() + "/user", op.getUniqueId() + ".yml");
                 if (op.hasPlayedBefore() && userFile.exists())
                 {
-                    final FileConfiguration userData = (FileConfiguration) YamlConfiguration
-                        .loadConfiguration(userFile);
+                    final FileConfiguration userData = (FileConfiguration) YamlConfiguration.loadConfiguration(userFile);
                     userData.set("user.group", (Object) group.getName());
                     try
                     {
@@ -137,31 +129,27 @@ public class CommandKit implements Listener, CommandExecutor
                     {
                         if (someArguments[2].equalsIgnoreCase(CustomCommand.USER_UPDATE.toString()))
                         {
-                            Bukkit.getScheduler().runTaskLaterAsynchronously(TinyChatManager.getInstance().getPlugin(),
-                                () -> {
-                                    target2.load();
-                                    aSender.sendMessage(Messages.getMessage(Message.SUCCESS));
-                                    return;
-                                }, 20L);
+                            Bukkit.getScheduler().runTaskLaterAsynchronously(TinyChatManager.getInstance().getPlugin(), () -> {
+                                target2.load();
+                                aSender.sendMessage(Messages.getMessage(Message.SUCCESS));
+                                return;
+                            }, 20L);
                             return true;
                         }
                         if (someArguments[2].equalsIgnoreCase(CustomCommand.USER_INFO.toString()))
                         {
                             aSender.sendMessage(" ");
-                            aSender.sendMessage(
-                                "§6§l" + target2.getPlayer().getName());
+                            aSender.sendMessage("§6§l" + target2.getPlayer().getName());
                             aSender.sendMessage(" ");
                             aSender.sendMessage("§6Group§f: §7" + target2.getGroup().getName());
-                            final String subgroup = (target2.getSubgroup() != null) ? target2.getSubgroup().getName()
-                                : "-";
+                            final String subgroup = (target2.getSubgroup() != null) ? target2.getSubgroup().getName() : "-";
                             aSender.sendMessage("§6Subgroup§f: §7" + subgroup);
                             aSender.sendMessage("§6Prefix§f: §8«§7" + target2.getPrefix().replace("§", "&") + "§8»");
                             aSender.sendMessage("§6Suffix§f: §8«§7" + target2.getSuffix().replace("§", "&") + "§8»");
-                            String colorCode = (target2.getChatColor() != null) ? target2.getChatColor().getCode()
-                                : "-";
+                            String colorCode = (target2.getChatColor() != null) ? target2.getChatColor().getCode() : "-";
                             if (target2.getChatFormatting() != null)
                                 colorCode += target2.getChatFormatting().getCode();
-                            
+
                             aSender.sendMessage("§6Chatcolor§f: §7" + colorCode.replace("§", "&"));
                             aSender.sendMessage(" ");
                             return true;
@@ -210,8 +198,7 @@ public class CommandKit implements Listener, CommandExecutor
                 aSender.sendMessage(Messages.getMessage(Message.PLAYER_NOT_FOUND));
                 return false;
             }
-            else if (someArguments[0].equalsIgnoreCase(CustomCommand.DATABASE.toString())
-                && TinyChatManager.getInstance().getDatabase() != null)
+            else if (someArguments[0].equalsIgnoreCase(CustomCommand.DATABASE.toString()) && TinyChatManager.getInstance().getDatabase() != null)
             {
                 if (!aSender.hasPermission(CustomCommand.DATABASE.getPermission()))
                 {
@@ -220,8 +207,7 @@ public class CommandKit implements Listener, CommandExecutor
                 }
                 if (someArguments[1].equalsIgnoreCase(CustomCommand.DATABASE_MIGRATE.toString()))
                 {
-                    aSender
-                        .sendMessage(Messages.getPrefix() + "§7Uploading data to database. This could take a while.");
+                    aSender.sendMessage(Messages.getPrefix() + "§7Uploading data to database. This could take a while.");
                     try
                     {
                         TinyChatManager.getInstance().getDatabase().migrateData();
@@ -245,10 +231,10 @@ public class CommandKit implements Listener, CommandExecutor
         aSender.sendMessage("§7/§6TinyChatManager reload §7" + CustomCommand.RELOAD.getDescription());
         aSender.sendMessage("§7/§6TinyChatManager user <Player> §7" + CustomCommand.USER.getDescription());
         aSender.sendMessage("§7/§6TinyChatManager set <Player> <Prefix> §7" + CustomCommand.SET.getDescription());
-        
+
         if (TinyChatManager.getInstance().getDatabase() != null && aSender.hasPermission(CustomCommand.DATABASE.getPermission()))
             aSender.sendMessage("§7/§6TinyChatManager database §7" + CustomCommand.DATABASE.getDescription());
-        
+
         aSender.sendMessage(" ");
         aSender.sendMessage("§7Version: " + TinyChatManager.getInstance().getPlugin().getDescription().getVersion());
         aSender.sendMessage("§7TinyChatManager by §b§lGloryrock");
