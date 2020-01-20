@@ -11,6 +11,8 @@ config:
     password: password
     table-prefix: tcm
   user:
+    custom-prefix:
+        enabled: false
   subgroups:
     enabled: true
   chat:

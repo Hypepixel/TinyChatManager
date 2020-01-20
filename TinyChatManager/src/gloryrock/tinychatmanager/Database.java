@@ -282,6 +282,8 @@ public class Database
                     final String subgroupName = userData.getFileData().getString("subgroup");
                     final String chatColor = userData.getFileData().getString("chat-color");
                     final String chatFormatting = userData.getFileData().getString("chat-formatting");
+                    final String cstmPrefix = userData.getFileData().getString("custom-prefix");
+                    final String cstmSuffix = userData.getFileData().getString("custom-suffix");
                     final boolean forceGroup = userData.getFileData().getBoolean("force-group");
                     final String sql = "INSERT INTO `" + this.getTablePrefix() + "users`(`uuid`, `group`, `force_group`, `subgroup`, `chat_color`, `chat_formatting`) VALUES (?,?,?,?,?,?,?)";
                     final PreparedStatement stmt = this.prepareStatement(sql);
@@ -289,6 +291,8 @@ public class Database
                     stmt.setString(2, groupName);
                     stmt.setBoolean(3, forceGroup);
                     stmt.setString(4, subgroupName);
+                    stmt.setString(5, cstmPrefix);
+                    stmt.setString(6, cstmSuffix);
                     stmt.setString(8, chatColor);
                     stmt.setString(9, chatFormatting);
                     try

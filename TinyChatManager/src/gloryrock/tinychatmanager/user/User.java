@@ -30,6 +30,8 @@ public class User
     private ArrayList<ChatFormatting> chatFormattings;
     private Group group;
     private Subgroup subgroup;
+    private String customPrefix;
+    private String customSuffix;
     private Color chatColor;
     private ChatFormatting chatFormatting;
     private UUID uniqueId;
@@ -39,19 +41,18 @@ public class User
     {
         this.PLAYER = player;
         this.uniqueId = player.getUniqueId();
+        
         if (TinyChatManager.getInstance().getDatabase() == null)
-        {
             this.userData = new UserData(player.getUniqueId());
-        }
+        
         this.load();
     }
 
     public static User getUser(final Player player)
     {
         if (User.USERS.containsKey(player.getName()))
-        {
             return User.USERS.get(player.getName());
-        }
+        
         return new User(player);
     }
 
@@ -84,11 +85,13 @@ public class User
         String subgroupName = null;
         String chatColor = null;
         String chatFormatting = null;
+        String cstmPrefix = null;
+        String cstmSuffix = null;
         boolean forceGroup = false;
         final Database db = TinyChatManager.getInstance().getDatabase();
         if (db != null)
         {
-            final String stmt = "SELECT `group`,`force_group`,`subgroup`,`chat_color`,`chat_formatting` FROM `" + db.getTablePrefix() + "users` WHERE `uuid` = '" + this.PLAYER.getUniqueId().toString() + "'";
+            final String stmt = "SELECT `group`,`force_group`,`subgroup`,`custom_prefix`,`custom_suffix`,`chat_color`,`chat_formatting` FROM `" + db.getTablePrefix() + "users` WHERE `uuid` = '" + this.PLAYER.getUniqueId().toString() + "'";
             try
             {
                 final ResultSet result = db.getValue(stmt);
@@ -98,6 +101,8 @@ public class User
                     subgroupName = result.getString("subgroup");
                     chatColor = result.getString("chat_color");
                     chatFormatting = result.getString("chat_formatting");
+                    cstmPrefix = result.getString("custom_prefix");
+                    cstmSuffix = result.getString("custom_suffix");
                     forceGroup = result.getBoolean("force_group");
                 }
                 else
@@ -108,9 +113,9 @@ public class User
                     st.executeUpdate();
                 }
             }
-            catch (SQLException e)
+            catch (SQLException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
                 return;
             }
         }
@@ -122,9 +127,13 @@ public class User
             subgroupName = data.getString("subgroup");
             chatColor = data.getString("chat-color");
             chatFormatting = data.getString("chat-formatting");
+            cstmPrefix = data.getString("custom-prefix");
+            cstmSuffix = data.getString("custom-suffix");
             forceGroup = data.getBoolean("force-group");
         }
+        
         this.forceGroup = forceGroup;
+        
         if (groupName == null)
         {
             this.group = this.getGroupPerPerms();
@@ -138,6 +147,7 @@ public class User
             this.group = this.getGroupPerPerms();
             this.saveData("group", null);
         }
+        
         if (FileManager.getConfig().getFileData().getBoolean(ConfigData.Values.USE_SUBGROUPS.toString()) && subgroupName != null)
         {
             if (GroupHandler.isSubgroup(subgroupName) && this.PLAYER.hasPermission(CustomPermission.SUBGROUP.toString() + "." + subgroupName))
@@ -150,10 +160,10 @@ public class User
                 this.saveData("subgroup", null);
             }
         }
+        
         if (chatColor != null && chatColor.length() >= 2)
-        {
             this.chatColor = Color.getByCode(chatColor.substring(1, 2));
-        }
+        
         if (chatFormatting == null || chatFormatting.length() < 2)
         {
             this.setChatFormatting(null);
@@ -167,6 +177,19 @@ public class User
         {
             this.chatFormatting = ChatFormatting.getByCode(chatFormatting.substring(1, 2));
         }
+        
+        if (this.PLAYER.hasPermission(CustomPermission.USER_CUSTOM_PREFIX.toString()))
+        {
+            if (cstmPrefix != null)
+                this.customPrefix = cstmPrefix.replace("&", "§");
+        }
+        
+        if (this.PLAYER.hasPermission(CustomPermission.USER_CUSTOM_SUFFIX.toString()))
+        {
+            if (cstmSuffix != null)
+                this.customSuffix = cstmSuffix.replace("&", "§");
+        }
+        
         User.USERS.remove(this.PLAYER.getName());
         User.USERS.put(this.PLAYER.getName(), this);
     }
@@ -178,6 +201,8 @@ public class User
             this.userData.set("group", this.userData.getFileData().getString("user.group"));
             this.userData.set("subgroup", this.userData.getFileData().getString("user.subgroup"));
             this.userData.set("chat-color", this.userData.getFileData().getString("user.chatcolor"));
+            this.userData.set("custom-prefix", this.userData.getFileData().getString("user.custom.prefix"));
+            this.userData.set("custom-suffix", this.userData.getFileData().getString("user.custom.suffix"));
             this.userData.set("force-group", this.userData.getFileData().getBoolean("user.force-group"));
             this.userData.set("user", null);
         }
@@ -190,10 +215,13 @@ public class User
 
     public void setPrefix(String prefix)
     {
-        if (prefix != null)
-        {
+        this.saveData("custom-prefix", prefix);
             prefix = prefix.replace("&", "§");
-        }
+        
+        if (prefix != null)
+            prefix = prefix.replace("&", "§");
+        
+        this.customPrefix = prefix;
     }
 
     public String getSuffix()
@@ -203,10 +231,12 @@ public class User
 
     public void setSuffix(String suffix)
     {
+        this.saveData("custom-suffix", suffix);
+        
         if (suffix != null)
-        {
             suffix = suffix.replace("&", "§");
-        }
+            
+        this.customSuffix = suffix;
     }
 
     public ArrayList<Color> getColors()
@@ -227,14 +257,13 @@ public class User
         {
             value = color.getCode().replace("§", "&");
             if (this.chatFormatting != null && this.chatFormatting.equals(ChatFormatting.RAINBOW))
-            {
                 this.setChatFormatting(null);
-            }
         }
         else if (this.chatFormatting != null && !this.chatFormatting.equals(ChatFormatting.RAINBOW))
         {
             this.setChatFormatting(null);
         }
+        
         this.saveData("chat-color", value);
     }
 
@@ -280,6 +309,8 @@ public class User
         this.saveData("group", group.getName());
         this.saveData("chat-color", null);
         this.saveData("group", group.getName());
+        this.saveData("custom-prefix", null);
+        this.saveData("custom-suffix", null);
         this.saveData("force-group", force);
     }
 
@@ -306,17 +337,13 @@ public class User
         for (final Group targetGroup : GroupHandler.getGroups().values())
         {
             if (this.PLAYER.hasPermission(CustomPermission.GROUP.toString() + "." + targetGroup.getName()))
-            {
                 availableGroups.add(targetGroup);
-            }
         }
         if (this.forceGroup)
         {
             final Group group = this.getGroup();
             if (!availableGroups.contains(group))
-            {
                 availableGroups.add(group);
-            }
         }
         return availableGroups;
     }
@@ -327,9 +354,7 @@ public class User
         for (final Subgroup targetGroup : GroupHandler.getSubgroups().values())
         {
             if (this.PLAYER.hasPermission(CustomPermission.SUBGROUP.toString() + "." + targetGroup.getName()))
-            {
                 availableGroups.add(targetGroup);
-            }
         }
         return availableGroups;
     }

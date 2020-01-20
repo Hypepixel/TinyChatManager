@@ -7,7 +7,9 @@ public enum CustomPermission
     COLOR("tinychatmanager.color"),
     COLOR_ALL("tinychatmanager.color.*"),
     GROUP("tinychatmanager.group"),
-    SUBGROUP("tinychatmanager.subgroup");
+    SUBGROUP("tinychatmanager.subgroup"),
+    USER_CUSTOM_PREFIX("tinychatmanager.user.custom.prefix"),
+    USER_CUSTOM_SUFFIX("tinychatmanager.user.custom.suffix");
 
     private final String myName;
 

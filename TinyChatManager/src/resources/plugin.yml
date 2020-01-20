@@ -29,6 +29,12 @@ permissions:
       tinychatmanager.use:
          description: Permission to use help commands.
          default: true
+      tinychatmanager.user.custom.prefix:
+         description: Permission to use custom prefixes per user.
+         default: true
+      tinychatmanager.user.custom.suffix:
+         description: Permission to use custom suffixes per user.
+         default: true
       tinychatmanager.commands.reload:
         description: Permission to reload configs and saved files.
         default: false
