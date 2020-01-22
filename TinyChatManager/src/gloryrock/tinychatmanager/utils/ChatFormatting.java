@@ -26,9 +26,7 @@ public enum ChatFormatting
         for (final ChatFormatting formatting : values())
         {
             if (formatting.code.equals(code))
-            {
                 return formatting;
-            }
         }
         return null;
     }

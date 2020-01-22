@@ -30,8 +30,8 @@ public class User
     private ArrayList<ChatFormatting> chatFormattings;
     private Group group;
     private Subgroup subgroup;
-    private String customPrefix;
-    private String customSuffix;
+    private String myCustomPrefix;
+    private String myCustomSuffix;
     private Color chatColor;
     private ChatFormatting chatFormatting;
     private UUID uniqueId;
@@ -65,6 +65,7 @@ public class User
     {
         this.colors = new ArrayList<Color>();
         this.chatFormattings = new ArrayList<ChatFormatting>();
+        
         if (!this.PLAYER.hasPermission(CustomPermission.COLOR_ALL.toString()))
         {
             for (final Color color : Color.values())
@@ -81,36 +82,38 @@ public class User
                 }
             }
         }
+        
         String groupName = null;
         String subgroupName = null;
         String chatColor = null;
         String chatFormatting = null;
-        String cstmPrefix = null;
-        String cstmSuffix = null;
+        String customPrefix = null;
+        String customSuffix = null;
         boolean forceGroup = false;
-        final Database db = TinyChatManager.getInstance().getDatabase();
-        if (db != null)
+        
+        final Database database = TinyChatManager.getInstance().getDatabase();
+        if (database != null)
         {
-            final String stmt = "SELECT `group`,`force_group`,`subgroup`,`custom_prefix`,`custom_suffix`,`chat_color`,`chat_formatting` FROM `" + db.getTablePrefix() + "users` WHERE `uuid` = '" + this.PLAYER.getUniqueId().toString() + "'";
+            final String readGroupQuery = "SELECT `group`,`force_group`,`subgroup`,`custom_prefix`,`custom_suffix`,`chat_color`,`chat_formatting` FROM `" + database.getTablePrefix() + "users` WHERE `uuid` = '" + this.PLAYER.getUniqueId().toString() + "'";
             try
             {
-                final ResultSet result = db.getValue(stmt);
-                if (result.next())
+                final ResultSet readGroupResult = database.getValue(readGroupQuery);
+                if (readGroupResult.next())
                 {
-                    groupName = result.getString("group");
-                    subgroupName = result.getString("subgroup");
-                    chatColor = result.getString("chat_color");
-                    chatFormatting = result.getString("chat_formatting");
-                    cstmPrefix = result.getString("custom_prefix");
-                    cstmSuffix = result.getString("custom_suffix");
-                    forceGroup = result.getBoolean("force_group");
+                    groupName = readGroupResult.getString("group");
+                    subgroupName = readGroupResult.getString("subgroup");
+                    chatColor = readGroupResult.getString("chat_color");
+                    chatFormatting = readGroupResult.getString("chat_formatting");
+                    customPrefix = readGroupResult.getString("custom_prefix");
+                    customSuffix = readGroupResult.getString("custom_suffix");
+                    forceGroup = readGroupResult.getBoolean("force_group");
                 }
                 else
                 {
-                    final String sql = "INSERT INTO `" + db.getTablePrefix() + "users`(`uuid`) VALUES (?)";
-                    final PreparedStatement st = db.prepareStatement(sql);
-                    st.setString(1, this.uniqueId.toString());
-                    st.executeUpdate();
+                    final String insertUsersQuery = "INSERT INTO `" + database.getTablePrefix() + "users`(`uuid`) VALUES (?)";
+                    final PreparedStatement insertUsersStatement = database.prepareStatement(insertUsersQuery);
+                    insertUsersStatement.setString(1, this.uniqueId.toString());
+                    insertUsersStatement.executeUpdate();
                 }
             }
             catch (SQLException exception)
@@ -127,8 +130,8 @@ public class User
             subgroupName = data.getString("subgroup");
             chatColor = data.getString("chat-color");
             chatFormatting = data.getString("chat-formatting");
-            cstmPrefix = data.getString("custom-prefix");
-            cstmSuffix = data.getString("custom-suffix");
+            customPrefix = data.getString("custom-prefix");
+            customSuffix = data.getString("custom-suffix");
             forceGroup = data.getBoolean("force-group");
         }
         
@@ -180,14 +183,14 @@ public class User
         
         if (this.PLAYER.hasPermission(CustomPermission.USER_CUSTOM_PREFIX.toString()))
         {
-            if (cstmPrefix != null)
-                this.customPrefix = cstmPrefix.replace("&", "§");
+            if (customPrefix != null)
+                this.myCustomPrefix = customPrefix.replace("&", "§");
         }
         
         if (this.PLAYER.hasPermission(CustomPermission.USER_CUSTOM_SUFFIX.toString()))
         {
-            if (cstmSuffix != null)
-                this.customSuffix = cstmSuffix.replace("&", "§");
+            if (customSuffix != null)
+                this.myCustomSuffix = customSuffix.replace("&", "§");
         }
         
         User.USERS.remove(this.PLAYER.getName());
@@ -221,7 +224,7 @@ public class User
         if (prefix != null)
             prefix = prefix.replace("&", "§");
         
-        this.customPrefix = prefix;
+        this.myCustomPrefix = prefix;
     }
 
     public String getSuffix()
@@ -236,7 +239,7 @@ public class User
         if (suffix != null)
             suffix = suffix.replace("&", "§");
             
-        this.customSuffix = suffix;
+        this.myCustomSuffix = suffix;
     }
 
     public ArrayList<Color> getColors()
@@ -248,14 +251,25 @@ public class User
     {
         return this.chatColor;
     }
-
-    public void setChatColor(final Color color)
+    
+    public String getCustomPrefix()
     {
-        this.chatColor = color;
+        return this.myCustomPrefix;
+    }
+    
+    public String getCustomSuffix()
+    {
+        return this.myCustomSuffix;
+    }
+
+    public void setChatColor(final Color aColor)
+    {
         String value = null;
-        if (color != null)
+        this.chatColor = aColor;
+        if (aColor != null)
         {
-            value = color.getCode().replace("§", "&");
+            value = aColor.getCode().replace("§", "&");
+            
             if (this.chatFormatting != null && this.chatFormatting.equals(ChatFormatting.RAINBOW))
                 this.setChatFormatting(null);
         }
@@ -279,8 +293,8 @@ public class User
 
     public void setChatFormatting(final ChatFormatting chatFormatting)
     {
-        this.chatFormatting = chatFormatting;
         String value = null;
+        this.chatFormatting = chatFormatting;
         if (chatFormatting != null)
         {
             if (chatFormatting.equals(ChatFormatting.RAINBOW))
@@ -293,6 +307,7 @@ public class User
                 value = chatFormatting.getCode().replace("§", "&");
             }
         }
+        
         this.saveData("chat-formatting", value);
     }
 

@@ -33,6 +33,7 @@ public class UserData
                 exception.printStackTrace();
             }
         }
+        
         this.fileData = (FileConfiguration) YamlConfiguration.loadConfiguration(this.file);
     }
 
@@ -57,6 +58,7 @@ public class UserData
         {
             exception.printStackTrace();
         }
+        
         this.load();
     }
 }

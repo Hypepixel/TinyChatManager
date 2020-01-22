@@ -13,6 +13,12 @@ config:
   user:
     custom-prefix:
         enabled: false
+        color:
+           enabled: false
+    custom-suffix:
+        enabled: false
+        color:
+           enabled: false
   subgroups:
     enabled: true
   chat:

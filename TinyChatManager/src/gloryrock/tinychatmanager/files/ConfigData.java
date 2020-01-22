@@ -92,9 +92,17 @@ public class ConfigData
         if (this.get(Values.SQL_TABLE_PREFIX) == null)
             this.set(Values.SQL_TABLE_PREFIX, "tcm");
         
-        if (this.get(Values.CUSTOM_PREFIX) == null || !(this.get(Values.CUSTOM_PREFIX) instanceof Boolean)) {
+        if (this.get(Values.CUSTOM_PREFIX) == null || !(this.get(Values.CUSTOM_PREFIX) instanceof Boolean))
             this.set(Values.CUSTOM_PREFIX, true);
-        }
+        
+        if (this.get(Values.CUSTOM_PREFIX_COLOR) == null || !(this.get(Values.CUSTOM_PREFIX_COLOR) instanceof Boolean))
+            this.set(Values.CUSTOM_PREFIX_COLOR, true);
+        
+        if (this.get(Values.CUSTOM_SUFFIX) == null || !(this.get(Values.CUSTOM_SUFFIX) instanceof Boolean))
+            this.set(Values.CUSTOM_SUFFIX, true);
+        
+        if (this.get(Values.CUSTOM_SUFFIX_COLOR) == null || !(this.get(Values.CUSTOM_SUFFIX_COLOR) instanceof Boolean))
+            this.set(Values.CUSTOM_SUFFIX_COLOR, true);
 
         if (this.get(Values.USE_SUBGROUPS) == null || !(this.get(Values.USE_SUBGROUPS) instanceof Boolean))
             this.set(Values.USE_SUBGROUPS, true);
@@ -139,6 +147,9 @@ public class ConfigData
         SQL_PASSWORD("config.sql.password"),
         SQL_TABLE_PREFIX("config.sql.table-prefix"),
         CUSTOM_PREFIX("config.user.custom-prefix.enabled"),
+        CUSTOM_PREFIX_COLOR("config.user.custom-prefix.color.enabled"),
+        CUSTOM_SUFFIX("config.user.custom-suffix.enabled"),
+        CUSTOM_SUFFIX_COLOR("config.user.custom-suffix.color.enabled"),
         USE_SUBGROUPS("config.subgroups.enabled"),
         DUPLICATE_WHITE_SPACES("config.chat.duplicate-white-spaces"),
         COLOR_RAINBOW_COLORS("config.chat.color.rainbow.colors"),
